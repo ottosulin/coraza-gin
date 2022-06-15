@@ -1,4 +1,4 @@
-module github.com/jptosso/coraza-gin
+module github.com/ottosulin/coraza-gin
 
 go 1.16
 
