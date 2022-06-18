@@ -2,6 +2,7 @@ package coraza
 
 import (
 	"io"
+	"log"
 	"net/http"
 
 	"github.com/corazawaf/coraza/v2"
@@ -45,5 +46,6 @@ func renderError(c *gin.Context, content string) {
 }
 
 func forbidden(c *gin.Context, tx *coraza.Transaction) {
+	log.Printf("Coraza blocked request from %s with %s, RuleID %d \n", c.RemoteIP(), c.Request.URL, tx.Interruption.RuleID)
 	c.JSON(http.StatusForbidden, gin.H{"status": "interrupted", "transaction": tx.ID})
 }
