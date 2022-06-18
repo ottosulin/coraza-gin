@@ -2,6 +2,7 @@ package coraza
 
 import (
 	"io"
+	"log"
 
 	"github.com/corazawaf/coraza/v2"
 	"github.com/corazawaf/coraza/v2/types"
@@ -45,6 +46,7 @@ func (w *responseWriter) processResponseHeaders() *types.Interruption {
 	w.headersProcessed = true
 	for k, vv := range w.ResponseWriter.Header() {
 		for _, v := range vv {
+			log.Println("DEBUG headers:", k, v)
 			w.tx.AddResponseHeader(k, v)
 		}
 	}
